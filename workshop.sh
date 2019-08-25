@@ -116,3 +116,16 @@ sudo lxc exec $STIN_NODE_1 -- apt update
 # install
 sudo lxc exec $STIN_NODE_1 -- apt install -y openmpi-bin libopenmpi-dev python3-pip
 sudo lxc exec $STIN_NODE_1 -- pip3 install numpy matplotlib mpi4py
+
+# For the students to perform:
+
+# lxc exec $STIN_NODE_1 -- apt install -y slurmd munge
+# lxc exec $STIN_LOGIN -- apt install -y slurmctld munge
+# copy from one node to another
+#    lxc copy $STIN_NODE_1 $STIN_NODE_2
+# lxc file pull $STIN_LOGIN/etc/munge/munge.key munge.key
+# lxc file pull $STIN_NODE_1/etc/munge/munge.key munge.key
+# lxc file pull $STIN_NODE_2/etc/munge/munge.key munge.key
+
+#  configure slurm.conf
+# lxc file push slurm.conf <TODOS_OS_CONTAINERS>
