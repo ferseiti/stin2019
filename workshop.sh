@@ -21,8 +21,8 @@ function usage()
     echo ""
     echo "Options:"
     echo "  -l, --login <LOGIN_NAME>               Name for the login node."
-    echo "  --node1 <NODE_1_NAME>                  Name for the computing node 1."
-    echo "  --node2 <NODE_2_NAME>                  Name for the computing node 2."
+    echo "  --node <NODE_NAME>                     Name for the computing node 1."
+    # echo "  --node2 <NODE_2_NAME>                  Name for the computing node 2."
     echo "  -h, --help                             Print this help message."
     echo ""
     exit 1
@@ -42,11 +42,11 @@ case $key in
     shift # past argument
     shift # past value
     ;;
-    --node2)
-    STIN_NODE_2="$2"
-    shift # past argument
-    shift # past value
-    ;;
+    # --node2)
+    # STIN_NODE_2="$2"
+    # shift # past argument
+    # shift # past value
+    # ;;
     -h|--help|*)    # print usage
     HELP=1
     usage
@@ -57,18 +57,18 @@ done
 
 export STIN_LOGIN
 export STIN_NODE_1
-export STIN_NODE_2
+# export STIN_NODE_2
 export re='^[0-9]+$'
 
-if ( [ -z $STIN_LOGIN ] || [ -z $STIN_NODE_1 ] || [ -z $STIN_NODE_2 ] ) && [ -z $HELP ]; then
+if ( [ -z $STIN_LOGIN ] || [ -z $STIN_NODE_1 ] ) && [ -z $HELP ]; then
     echo "Error: all arguments are mandatory."
     usage
     exit 1
 fi
 
-NODES_NAME="$STIN_NODE_1,$STIN_NODE_2"
+NODES_NAME="$STIN_NODE_1"
 
-cp slurm-original.conf slurm.conf
+# cp slurm-original.conf slurm.conf
 sudo rm -f munge.key
 # install containers
 
@@ -129,3 +129,4 @@ sudo lxc exec $STIN_NODE_1 -- pip3 install numpy matplotlib mpi4py
 
 #  configure slurm.conf
 # lxc file push slurm.conf <TODOS_OS_CONTAINERS>
+#  restart todos os containers
