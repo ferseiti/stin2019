@@ -21,8 +21,8 @@ function usage()
     echo ""
     echo "Options:"
     echo "  -l, --login <LOGIN_NAME>               Name for the login node."
-    echo "  --node <NODE_NAME>                     Name for the computing node 1."
-    # echo "  --node2 <NODE_2_NAME>                  Name for the computing node 2."
+    echo "  --node1 <NODE_1_NAME>                  Name for the computing node 1."
+    # echo "  --node2 <NODE_2_NAME>                Name for the computing node 2."
     echo "  -h, --help                             Print this help message."
     echo ""
     exit 1
