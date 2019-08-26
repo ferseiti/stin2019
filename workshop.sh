@@ -126,9 +126,12 @@ sudo lxc exec $STIN_NODE_1 -- pip3 install numpy matplotlib mpi4py
 # copy from one node to another
 #    lxc copy $STIN_NODE_1 $STIN_NODE_2
 # lxc file pull $STIN_LOGIN/etc/munge/munge.key munge.key
-# lxc file pull $STIN_NODE_1/etc/munge/munge.key munge.key
-# lxc file pull $STIN_NODE_2/etc/munge/munge.key munge.key
+# lxc file push munge.key $STIN_NODE_1/etc/munge/munge.key
+# lxc file push munge.key $STIN_NODE_2/etc/munge/munge.key
+# lxc exec <all_nodes> -- chown munge:munge /etc/munge/munge.key
 
+# lxc exec $STIN_LOGIN -- mkdir /var/spool/slurmctld
+# lxc exec $STIN_LOGIN -- chown slurm:slurm /var/spool/slurmctld
 #  configure slurm.conf
 # lxc file push slurm.conf <TODOS_OS_CONTAINERS>
 #  restart todos os containers
