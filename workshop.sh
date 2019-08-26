@@ -107,6 +107,8 @@ sleep 30
 # update
 sudo lxc file push sources.list $STIN_NODE_1/etc/apt/
 sudo lxc file push sources.list $STIN_LOGIN/etc/apt/
+sudo lxc exec $STIN_LOGIN -- apt update
+sudo lxc exec $STIN_LOGIN -- apt upgrade -y
 sudo lxc exec $STIN_NODE_1 -- apt update
 sudo lxc exec $STIN_NODE_1 -- apt upgrade -y
 
