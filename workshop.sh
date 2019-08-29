@@ -1,40 +1,6 @@
 #!/bin/bash
 set -e
 
-sudo apt install -y lxd
-cat <<EOF | sudo lxd init --preseed
-config: {}
-networks:
-- config:
-    ipv4.address: auto
-    ipv6.address: none
-  description: ""
-  managed: false
-  name: lxdbr0
-  type: ""
-storage_pools:
-- config: {}
-  description: ""
-  name: default
-  driver: dir
-profiles:
-- config: {}
-  description: ""
-  devices:
-    eth0:
-      name: eth0
-      nictype: bridged
-      parent: lxdbr0
-      type: nic
-    root:
-      path: /
-      pool: default
-      type: disk
-  name: default
-cluster: null
-EOF
-
-
 function usage()
 {
     printf "\nScript that creates a virtual cluster made of lxd containers."
@@ -89,6 +55,42 @@ if ( [ -z $STIN_LOGIN ] || [ -z $STIN_NODE_1 ] ) && [ -z $HELP ]; then
 fi
 
 NODES_NAME="$STIN_NODE_1"
+
+
+sudo apt install -y lxd
+cat <<EOF | sudo lxd init --preseed
+config: {}
+networks:
+- config:
+    ipv4.address: auto
+    ipv6.address: none
+  description: ""
+  managed: false
+  name: lxdbr0
+  type: ""
+storage_pools:
+- config: {}
+  description: ""
+  name: default
+  driver: dir
+profiles:
+- config: {}
+  description: ""
+  devices:
+    eth0:
+      name: eth0
+      nictype: bridged
+      parent: lxdbr0
+      type: nic
+    root:
+      path: /
+      pool: default
+      type: disk
+  name: default
+cluster: null
+EOF
+
+
 
 # cp slurm-original.conf slurm.conf
 sudo rm -f munge.key
