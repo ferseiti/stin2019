@@ -1,17 +1,5 @@
 #!/bin/bash
 set -e
-# perguntar quem viu a a palestra
-# baixar antes a imagem
-# escolher uma imagem menor
-# remover sudo dos comandos lxc
-# ao inves de matheus,fernando pode ser erechim-[1-2]
-# demora muito para instalar tudo
-# container base com update, upgrade, munge e mpi
-# mpi reclama de rodar com root
-# usar https://slurm.schedmd.com/configurator.html para configurar o slurm.conf
-# fazer um troubleshooting dos possiveis erros
-# remover comandos inuteis
-
 
 function usage()
 {
